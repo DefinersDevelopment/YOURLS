@@ -74,7 +74,7 @@ function yourls_html_head( $context = 'index', $title = '' ) {
 	$bodyclass .= ( yourls_is_mobile_device() ? 'mobile' : 'desktop' );
 
 	// Page title
-	$_title = 'YOURLS &mdash; Your Own URL Shortener | ' . yourls_link();
+	$_title = 'D4 Link Shortener | ' . yourls_link();
 	$title = $title ? $title . " &laquo; " . $_title : $_title;
 	$title = yourls_apply_filter( 'html_title', $title, $context );
 
@@ -84,11 +84,12 @@ function yourls_html_head( $context = 'index', $title = '' ) {
 <head>
 	<title><?php echo $title ?></title>
 	<meta http-equiv="Content-Type" content="<?php echo yourls_apply_filter( 'html_head_meta_content-type', 'text/html; charset=utf-8' ); ?>" />
-	<meta name="generator" content="YOURLS <?php echo YOURLS_VERSION ?>" />
-	<meta name="description" content="YOURLS &raquo; Your Own URL Shortener' | <?php yourls_site_url(); ?>" />
+	<meta name="generator" content="D4 <?php echo YOURLS_VERSION ?>" />
+	<meta name="description" content="D4 &raquo; URL Shortener' | <?php yourls_site_url(); ?>" />
 	<meta name="referrer" content="always" />
 	<?php yourls_do_action('html_head_meta', $context); ?>
 	<link rel="shortcut icon" href="<?php yourls_favicon(); ?>" />
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800" rel="stylesheet">
 	<script src="<?php yourls_site_url(); ?>/js/jquery-2.2.4.min.js?v=<?php echo YOURLS_VERSION; ?>" type="text/javascript"></script>
 	<script src="<?php yourls_site_url(); ?>/js/common.js?v=<?php echo YOURLS_VERSION; ?>" type="text/javascript"></script>
 	<script src="<?php yourls_site_url(); ?>/js/jquery.notifybar.js?v=<?php echo YOURLS_VERSION; ?>" type="text/javascript"></script>
@@ -151,7 +152,7 @@ function yourls_html_footer($can_query = true) {
 
 	?>
 	</div><?php // wrap ?>
-	<footer id="footer" role="contentinfo"><p>
+	<footer style="display:none;" id="footer" role="contentinfo"><p>
 		<?php
 		$footer  = yourls_s( 'Powered by %s', '<a href="http://yourls.org/" title="YOURLS">YOURLS</a> v ' . YOURLS_VERSION );
 		$footer .= ' &ndash; '.$num_queries;
@@ -185,10 +186,17 @@ function yourls_html_addnew( $url = '', $keyword = '' ) {
 	<div id="new_url">
 		<div>
 			<form id="new_url_form" action="" method="get">
-				<div><strong><?php yourls_e( 'Enter the URL' ); ?></strong>:<input type="text" id="add-url" name="url" value="<?php echo $url; ?>" class="text" size="80" placeholder="https://" />
-				<?php yourls_e( 'Optional '); ?> : <strong><?php yourls_e('Custom short URL'); ?></strong>:<input type="text" id="add-keyword" name="keyword" value="<?php echo $keyword; ?>" class="text" size="8" />
+				<div class="topContain">
+					<div class="contain">
+						<div class="block" id="mainInput">
+							<strong><?php yourls_e( 'Enter URL' ); ?>:</strong><input type="text" id="add-url" name="url" value="<?php echo $url; ?>" class="text" size="80" placeholder="https://" />
+						</div>
+						<div class="block" id="customInput">
+							<strong><?php yourls_e('Custom URL'); ?>:</strong><input type="text" id="add-keyword" name="keyword" value="<?php echo $keyword; ?>" class="text" size="8" />
+						</div>
+					</div>
 				<?php yourls_nonce_field( 'add_url', 'nonce-add' ); ?>
-				<input type="button" id="add-button" name="add-button" value="<?php yourls_e( 'Shorten The URL' ); ?>" class="button" onclick="add_link();" /></div>
+				<input type="button" id="add-button" name="add-button" value="<?php yourls_e( 'Shorten URL' ); ?>" class="button" onclick="add_link();" /></div>
 			</form>
 			<div id="feedback" style="display:none"></div>
 		</div>
@@ -229,6 +237,7 @@ function yourls_html_tfooter( $params = array() ) {
 			<div id="filter_form">
 				<form action="" method="get">
 					<div id="filter_options">
+						<div class="line1">
 						<?php
 
 						// First search control: text to search
@@ -268,7 +277,7 @@ function yourls_html_tfooter( $params = array() ) {
 						// Third search control: Show XX rows
 						/* //translators: "Show <text field> rows" */
 						yourls_se( 'Show %s rows',  '<input type="text" name="perpage" class="text" size="2" value="' . $perpage . '" />' );
-						echo "<br/>\n";
+						echo "</div><div class='line2'>\n";
 
 						// Fourth search control: Show links with more than XX clicks
 						$_options = array(
@@ -279,7 +288,7 @@ function yourls_html_tfooter( $params = array() ) {
 						$_input  = '<input type="text" name="click_limit" class="text" size="4" value="' . $click_limit . '" /> ';
 						/* //translators: "Show links with <more/less> than <text field> clicks" */
 						yourls_se( 'Show links with %1$s than %2$s clicks', $_select, $_input );
-						echo "<br/>\n";
+						echo "</div><div class='line3'>\n";
 
 						// Fifth search control: Show links created before/after/between ...
 						$_options = array(
@@ -294,6 +303,7 @@ function yourls_html_tfooter( $params = array() ) {
 						/* //translators: "Show links created <before/after/between> <date input> <"and" if applicable> <date input if applicable>" */
 						yourls_se( 'Show links created %1$s %2$s %3$s %4$s', $_select, $_input, $_and, $_input2 );
 						?>
+						</div>
 
 						<div id="filter_buttons">
 							<input type="submit" id="submit-sort" value="<?php yourls_e('Search'); ?>" class="button primary" />
@@ -731,11 +741,11 @@ function yourls_login_screen( $error_msg = '' ) {
 			?>
 			<p>
 				<label for="username"><?php yourls_e( 'Username' ); ?></label><br />
-				<input type="text" id="username" name="username" size="30" class="text" />
+				<input type="text" id="username" name="username" placeholder="username" size="30" class="text" />
 			</p>
 			<p>
 				<label for="password"><?php yourls_e( 'Password' ); ?></label><br />
-				<input type="password" id="password" name="password" size="30" class="text" />
+				<input type="password" id="password" name="password" placeholder="password" size="30" class="text" />
 			</p>
 			<p style="text-align: right;">
 				<input type="submit" id="submit" name="submit" value="<?php yourls_e( 'Login' ); ?>" class="button" />
@@ -756,7 +766,7 @@ function yourls_html_menu() {
 
 	// Build menu links
 	if( defined( 'YOURLS_USER' ) ) {
-		$logout_link = yourls_apply_filter( 'logout_link', sprintf( yourls__('Hello <strong>%s</strong>'), YOURLS_USER ) . ' (<a href="' . yourls_admin_url() . '?action=logout" title="' . yourls_esc_attr__( 'Logout' ) . '">' . yourls__( 'Logout' ) . '</a>)' );
+		$logout_link = yourls_apply_filter( 'logout_link', sprintf( yourls__(' <strong>%s</strong>'), '' ) . ' <a href="' . yourls_admin_url() . '?action=logout" title="' . yourls_esc_attr__( 'Logout' ) . '">' . yourls__( 'Logout' ) . '</a>' );
 	} else {
 		$logout_link = yourls_apply_filter( 'logout_link', '' );
 	}
@@ -768,7 +778,7 @@ function yourls_html_menu() {
 	$admin_links['admin'] = array(
 		'url'    => yourls_admin_url( 'index.php' ),
 		'title'  => yourls__( 'Go to the admin interface' ),
-		'anchor' => yourls__( 'Admin interface' )
+		'anchor' => yourls__( 'Links' )
 	);
 
 	if( yourls_is_admin() ) {
@@ -778,7 +788,7 @@ function yourls_html_menu() {
 		);
 		$admin_links['plugins'] = array(
 			'url'    => yourls_admin_url( 'plugins.php' ),
-			'anchor' => yourls__( 'Manage Plugins' )
+			'anchor' => yourls__( 'Plugins' )
 		);
 		$admin_sublinks['plugins'] = yourls_list_plugin_admin_pages();
 	}
@@ -787,7 +797,9 @@ function yourls_html_menu() {
 	$admin_sublinks = yourls_apply_filter( 'admin_sublinks', $admin_sublinks );
 
 	// Now output menu
-	echo '<nav role="navigation"><ul id="admin_menu">'."\n";
+	echo '<nav role="navigation">';
+	echo '<div class="logo"><a href=""><img src="/url-shortener/images/logo.svg" alt="" /></a></div>';
+	echo '<ul id="admin_menu">'."\n";
 	if ( yourls_is_private() && !empty( $logout_link ) )
 		echo '<li id="admin_menu_logout_link">' . $logout_link .'</li>';
 
