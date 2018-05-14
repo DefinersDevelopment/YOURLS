@@ -1,30 +1,44 @@
 body {
-	font-family: Verdana, Arial;
+	font-family: "Montserrat", sans-serif;
 	font-size: 12px;
 	color: #595441;
-	background:#e3f3ff;
+	background: linear-gradient(270deg, #02b1a8, #2c5699);
+    background-size: 400% 400%;
+    -webkit-animation: joey 30s ease infinite;
+    -moz-animation: joey 30s ease infinite;
+    animation: joey 30s ease infinite;
 	text-align:center;
-	margin-top:0px;
-	padding-top:10px;
+	padding:50px 0;
+	margin:0;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+
+@-webkit-keyframes joey {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes joey {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes joey { 
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
 }
 #wrap {
-	max-width:950px;
+	max-width:960px;
 	min-height:150px;
-	margin:0 auto;
-	background:white;
-	text-align:left;
-	padding:5px 20px 10px 20px;
-	border-left:3px solid #2a85b3;
-	border-right:3px solid #2a85b3;
-	border-bottom:3px solid #2a85b3;
-	border-top:3px solid #2a85b3;
-	-moz-border-radius:20px;
-	-webkit-border-radius:20px;
-	border-radius:20px;
+	text-align:left; 
+    display: flex;
 }
 .hide-if-no-js {display: none;}
 div, p, td {
-	font-family: Verdana, Arial;
+	font-family: "Montserrat", sans-serif;
 	font-size: 12px;
 }
 a, a:link, a:active, a:visited {
@@ -40,6 +54,36 @@ h1 a, h1 a:link, h1 a:active, h1 a:visited {color:#2a85b3}
 h1 a:hover{text-decoration:none;}
 h1 a:hover span{text-decoration:underline;color:#88c0eb}
 
+#wrap p {display: none !important;}
+#wrap main p, #wrap header p, #wrap #login p, #wrap #tabs p {display:block !important;}
+
+#wrap #login {box-sizing:border-box; padding:20px; background:#fff; -webkit-box-shadow: 1px 3px 18px rgba(0, 0, 0, 0.3); box-shadow: 1px 3px 18px rgba(0, 0, 0, 0.3);}
+
+nav {width:150px; min-width:150px; padding-top:45px; box-sizing:border-box; padding-right:40px; text-align:right; margin-right:auto;}
+nav ul {list-style:none;}
+nav li a {color:#fff !important; line-height:40px;}
+nav ul#admin_menu li:hover {list-style:none;}
+
+nav ul#admin_menu li { font-weight: 700; font-size: 18px; font-size: 1.125rem; line-height: 40px; line-height: 2.5rem; text-transform: uppercase; }
+nav ul#admin_menu a { color: #fff; text-decoration: none; }
+
+header h1, #admin_menu_help_link, #admin_menu_plugins_link, #customInput {display:none;}
+#mainInput {display:flex; align-items:center; width:100%; flex-shrink: 0;}
+#mainInput strong, #customInput strong {width:120px; padding-right:20px; font-size:14px;}
+#mainInput input, #customInput input, #login input {width:100%; box-sizing:border-box; margin:0 !important; height:40px; padding:0 10px; font-size:18px;}
+
+
+
+.topContain {display:flex;}
+
+.contain {display:flex; flex-wrap:wrap; padding-right:10px;}
+#add-button {color:#fff; padding:0 20px; font-size:14px; border:0; background: linear-gradient(270deg, #02b1a8, #2c5699); background-size: 400% 400%; -webkit-animation: joey 30s ease infinite; -moz-animation: joey 30s ease infinite; animation: joey 30s ease infinite;}
+
+
+
+main {max-width:810px; width:820px; min-width:820px; background:#fff; padding:20px; -webkit-box-shadow: 1px 3px 18px rgba(0, 0, 0, 0.3); box-shadow: 1px 3px 18px rgba(0, 0, 0, 0.3);}
+
+
 ul#admin_menu {
 	min-height:100px;
 	list-style-type:none;
@@ -47,12 +91,12 @@ ul#admin_menu {
 	font-size:105%;
 }
 ul#admin_menu li {
-	color:#aaa;
+	color:#fff;
 	padding:1px 0;
 }
 ul#admin_menu li:hover {
 	list-style-type:square;
-	color:#000;
+	color:#fff;
 }
 
 code {
@@ -70,24 +114,24 @@ input, textarea {
 	border-radius:3px;
 }
 Input.text, select, textarea {
-	font-family: Verdana, Arial;
+	font-family: "Montserrat", sans-serif;
 	font-size: 10px;
 	color: #595441;
 	background-color: #FFFFFF;
-	border: 1px solid #88c0eb;
+	border: 1px solid #595441;
 	margin:1px;
 }
 input.button {
-	font-family: Verdana, Arial;
+	font-family: "Montserrat", sans-serif;
 	font-size: 10px;
 	color: #595441;
 	font-weight: bold;
 	background-color: #FFFFFF;
-	border: 1px solid #88c0eb;
+	border: 1px solid #595441;
 	cursor:pointer;
 }
 input.primary {
-	border:2px solid #2A85B3;
+	border:2px solid #595441;
 	background:#fafafe;
 }
 input.text:focus, textarea:focus {
@@ -99,17 +143,14 @@ tr.edit-row  td {
 }
 #new_url {
 	text-align:center;
-	padding:1px;
-	border:1px solid #CDCDCD;
 	background:#fff;
 	clear:both;
 }
 #new_url div {
-	background:#C7E7FF;
-	padding:4px;
+	
 }
 #new_url_form {
-	padding:4px;
+	padding-bottom:10px;
 }
 #new_url #feedback {
 	background:#ff8;
@@ -136,7 +177,7 @@ tr:hover td.actions input, tr:hover td.actions a {
 	visibility:visible;
 }
 td.actions .button {
-	font-family: Verdana, Arial;
+	font-family: "Montserrat", sans-serif;
 	font-size: 10px;
 	color: #595441;
 	font-weight: bold;
@@ -186,7 +227,6 @@ td.actions .button_stats {
 }
 .error {
 	color: red;
-	background:#fee;
 }
 .warning {
 	color: orange;
@@ -294,13 +334,9 @@ a.bookmarklet:hover {
   font-size:18px;
   color:#000;
   text-align:center;
-  font-family: Arial, Verdana, sans-serif;
+  font-family: "Montserrat", sans-serif;
   padding:20px 0px;
   border-bottom:1px solid #bbb;
-  filter:alpha(opacity=95);
-  -moz-opacity:0.95;
-  -khtml-opacity:0.95;
-  opacity:0.95;
   -moz-box-shadow: 0 1px 5px rgba(0,0,0,0.5);
   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
   text-shadow: 0 1px 1px rgba(0,0,0,0.1);

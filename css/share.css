@@ -4,6 +4,7 @@
 
 #shareboxes{
 	margin-top:15px;
+	display:flex;
 }
 
 div.share {
@@ -29,6 +30,8 @@ div.share {
 }
 #sharebox {
 	width:500px;
+	margin-right:0;
+	margin-left:auto;
 }
 #tweet_body {
 	float:left;

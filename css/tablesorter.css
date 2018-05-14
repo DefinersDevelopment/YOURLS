@@ -8,13 +8,12 @@ table.tblSorter {
 	text-align: left;
 }
 table.tblSorter thead tr th, table.tblSorter tfoot tr th, table.tblSorter th.header {
-	background-color: #C7E7FF;
-	border: 1px solid #FFF;
+	background-color: #e7e7e7;
 	font-size: 8pt;
 	padding: 4px;
 }
 table.tblSorter tfoot tr th {
-	background-color: #E3F3FF;
+	/*background-color: #E3F3FF;*/
 }
 table.tblSorter thead tr .tablesorter-header {
 	background-image: url('../images/bg.gif');
@@ -34,7 +33,7 @@ table.tblSorter tbody td {
 	vertical-align: top;
 }
 table.tblSorter tbody tr.normal-row td {
-	background: #F1F9FF;
+	background: #f7f7f7;
 }
 table.tblSorter tbody tr.alt-row td {
 
@@ -56,15 +55,13 @@ table.tblSorter thead tr .tablesorter-headerAsc {
 	background-position: center right;
 }
 table.tblSorter thead tr .tablesorter-headerAsc, table.tblSorter thead tr .tablesorter-headerDesc {
-	background-color: #91C7F2;
+	background-color: #c5c5c5;
 }
 table.tblSorter tfoot tr {
 	background-color: #BCD9E8;
 }
 #filter_form{
-	float:left;
 	text-align:left;
-	max-width:69%;
 }
 #filter_buttons{
 	float:right;
